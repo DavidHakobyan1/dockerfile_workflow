@@ -1,1 +1,22 @@
+name: Dockerfile test
 
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Buid Dockerfile
+      run: docker build -t go_image .
+
+    - name: Docker Login
+      run: cat ~/my_password.txt | docker login --username dockerid21656 --password-stdin
+
+    - name: Tag image
+      run: docker tag go_image dockerid21656/go_image:0.1.0
+
+    - name: Push image to DockerHub
+      run: docker push dockerid21656/go_image:0.1.0
