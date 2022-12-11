@@ -30,3 +30,6 @@ jobs:
 
     - name: Push image to DockerHub
       run: docker push dockerid21656/go_image:0.1.0
+
+    - name: End Process
+      run: echo "END PROCESS"
